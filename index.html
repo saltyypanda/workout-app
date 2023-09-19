@@ -6,7 +6,12 @@
 <body>
   <h1>Hello World!</h1>
 
-  <!-- Link to external JavaScript file -->
+  <!-- Add an input field and a button -->
+  <input type="text" id="userInput" placeholder="Type a message">
+  <button id="myButton" onclick="sendMessage()">Send Message</button>
+
   <script src="scripts/script.js"></script>
+  <script src="scripts/bundle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 </html>
