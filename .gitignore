@@ -1,2 +1,2 @@
 node_modules/
-src/open-ai.env
+.env
