@@ -39,6 +39,8 @@ async function getChatCompletion() {
 // Example usage
 getChatCompletion()
   .then(result => {
+    // result = returns an array of choices, and each choice is what I think is a tuple of
+    // data such as message, and the message has other fields
     console.log('Response:', result.choices[0].message.content);
   })
   .catch(error => {
