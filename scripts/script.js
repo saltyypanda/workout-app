@@ -1,14 +1,10 @@
-const apiURL = process.env.OPENAI_API_URL;
-const apiKey = process.env.OPENAI_API_KEY;
-// const axios = require('axios');
+const configuration = new OpenAI.Configuration({
+  apiURL: process.env.OPENAI_API_URL,
+  apiKey: process.env.OPENAI_API_KEY,  // Read the API key from user input
+});
+const openai = new OpenAI.OpenAIApi(configuration);
 
-
-// const { OpenAI } = require("openai");
-
-// const openai = new OpenAI({
-//   organization: "org-f2NApAOmy3mObCzhBPi4XHnw",
-//   apiKey: process.env.OPENAI_API_KEY
-// });
+alert(openai.apiKey)
 
 async function getChatCompletion(content) {
   const OPENAI_API_KEY = openai.apiKey;
