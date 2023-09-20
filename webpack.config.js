@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    mode: 'development',
+  mode: 'development',
   entry: './src/script.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -12,7 +12,7 @@ module.exports = {
     alias: {
       // Define aliases for your libraries
       'axios': path.resolve(__dirname, 'node_modules/axios'),
-      'dotenv': path.resolve(__dirname, 'node_modules/dotenv'),
+      'dotenv': path.resolve(__dirname, 'node_modules/dotenv/lib/main'),
       'openai': path.resolve(__dirname, 'node_modules/openai')
     },
     fallback: {
