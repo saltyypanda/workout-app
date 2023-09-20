@@ -9,7 +9,7 @@ import { OpenAI } from 'openai';
 
 const openai = new OpenAI({
   organization: "org-f2NApAOmy3mObCzhBPi4XHnw",
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: dotenv.process.env.OPENAI_API_KEY
 });
 
 
