@@ -2,7 +2,7 @@ import axios from 'axios';
 import { OpenAI } from 'openai';
 
 document.getElementById('myButton').addEventListener('click', function() {
-  sendMessage(); // Assuming sendMessage() is defined in the same file
+  sendMessage();
 });
 
 const openai = new OpenAI({
@@ -30,8 +30,7 @@ async function getChatCompletion() {
 
   try {
     const response = await axios.post('https://api.openai.com/v1/chat/completions', data, config);
-    return JSON.stringify(response.data);
-    // return "it worked!!!"
+    return JSON.stringify(response.data.choices[0].message.content);
   } catch (error) {
     console.error('Error:', error);
     throw error;
@@ -47,14 +46,3 @@ export async function sendMessage() {
   const result = await getChatCompletion();
   alert(result);
 }
-
-// Example usage
-// getChatCompletion()
-//   .then(result => {
-//     // result = returns an array of choices, and each choice is what I think is a tuple of
-//     // data such as message, and the message has other fields
-//     console.log('Response:', result.choices[0].message.content);
-//   })
-//   .catch(error => {
-//     console.error('Error:', error);
-//   });
