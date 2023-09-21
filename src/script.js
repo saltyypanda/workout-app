@@ -23,7 +23,7 @@ async function getChatCompletion(userInput) {
   const data = {
     model: 'gpt-3.5-turbo',
     messages: [
-      { role: 'user', content: `${userInput}` }
+      { role: 'user', content: userInput }
     ],
     temperature: 0.7
   };
@@ -39,11 +39,11 @@ async function getChatCompletion(userInput) {
 
 export async function sendMessage() {
   // Get the user input from the input field
-  const userInput = document.getElementById('userInput').value;
+  const userInput = document.getElementById('userInput').value.toString();
   const responseContainer = document.getElementById('responseContainer');
 
   // Call getChatCompletion with user input
-  const result = await getChatCompletion();
+  const result = await getChatCompletion(userInput);
 
   // Create a new element to hold the result
   const resultElement = document.createElement('div');
