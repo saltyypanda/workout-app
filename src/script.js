@@ -1,12 +1,5 @@
-// require('dotenv').config();
-// const axios = require('axios');
-
-// const { OpenAI } = require("openai");
-
 import axios from 'axios';
-import dotenv from 'dotenv';
 import { OpenAI } from 'openai';
-// dotenv.config()
 
 document.getElementById('myButton').addEventListener('click', function() {
   sendMessage(); // Assuming sendMessage() is defined in the same file
@@ -14,7 +7,7 @@ document.getElementById('myButton').addEventListener('click', function() {
 
 const openai = new OpenAI({
   organization: "org-f2NApAOmy3mObCzhBPi4XHnw",
-  apiKey: "INSERT KEY HERE",
+  apiKey: process.env.OPENAI_API_KEY,
   dangerouslyAllowBrowser: true
 });
 
@@ -35,13 +28,15 @@ async function getChatCompletion() {
     temperature: 0.7
   };
 
-  try {
-    const response = await axios.post('https://api.openai.com/v1/chat/completions', data, config);
-    return response.data;
-  } catch (error) {
-    console.error('Error:', error);
-    throw error;
-  }
+  return "you did it!";
+
+  // try {
+  //   const response = await axios.post('https://api.openai.com/v1/chat/completions', data, config);
+  //   return response.data;
+  // } catch (error) {
+  //   console.error('Error:', error);
+  //   throw error;
+  // }
 }
 
 export async function sendMessage() {
@@ -51,7 +46,7 @@ export async function sendMessage() {
 
   // // Call getChatCompletion with user input
   const result = await getChatCompletion();
-  alert("YOU DID IT!");
+  alert(result);
 }
 
 // Example usage
