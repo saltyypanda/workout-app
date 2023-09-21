@@ -11,7 +11,7 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true
 });
 
-async function getChatCompletion() {
+async function getChatCompletion(userInput) {
   const OPENAI_API_KEY = openai.apiKey;
   const config = {
     headers: {
@@ -23,7 +23,7 @@ async function getChatCompletion() {
   const data = {
     model: 'gpt-3.5-turbo',
     messages: [
-      { role: 'user', content: 'Say this is a test!' }
+      { role: 'user', content: `${userInput}` }
     ],
     temperature: 0.7
   };
@@ -38,11 +38,17 @@ async function getChatCompletion() {
 }
 
 export async function sendMessage() {
-  // // Get the user input from the input field
-  // const userInput = document.getElementById('userInput').value;
-  // const responseContainer = document.getElementById('responseContainer');
+  // Get the user input from the input field
+  const userInput = document.getElementById('userInput').value;
+  const responseContainer = document.getElementById('responseContainer');
 
-  // // Call getChatCompletion with user input
+  // Call getChatCompletion with user input
   const result = await getChatCompletion();
-  alert(result);
+
+  // Create a new element to hold the result
+  const resultElement = document.createElement('div');
+  resultElement.innerText = result; // Assuming result is a string
+
+  // Append the result element to the response container
+  responseContainer.appendChild(resultElement);
 }
