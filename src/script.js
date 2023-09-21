@@ -37,14 +37,11 @@ async function getChatCompletion(message) {
   }
 }
 
-
 function generatePrompt(height, sex, weight, minutes, muscles) {
-  const prompt = `Act as my personal trainer. I am a ${sex}, ${height} inches tall, ${weight} lbs.
-                  I want you to write me workout that is ${minutes} minutes long, focusing on ${muscles}.
-                  I want you to include the name of the exercise, how much time to do it for, and a description of the exercise.
-                  Put all the information in JSON format and do not say anything before or after`;
-  
-  return prompt;
+  return `Act as my personal trainer. I am a ${sex}, ${height} inches tall, ${weight} lbs.
+          I want you to write me workout that is ${minutes} minutes long, focusing on ${muscles}.
+          I want you to include the name of the exercise, how much time to do it for, and a description of the exercise.
+          Put all the information in JSON format and do not say anything before or after`;
 }
 
 
@@ -56,17 +53,15 @@ export async function generateWorkout() {
   const minutes = document.getElementById('minutes').value.toString();
   const muscles = document.getElementById('muscles').value.toString();
 
-  const responseContainer = document.getElementById('responseContainer');
-
   const prompt = generatePrompt(height, sex, weight, minutes, muscles);
+
+  // Append the result element to the response container
+  const responseContainer = document.getElementById('responseContainer');
 
   // Call getChatCompletion with user input
   const result = await getChatCompletion(prompt);
 
-  // Create a new element to hold the result
-  const resultElement = document.createElement('div');
-  resultElement.innerText = result; // Assuming result is a string
-
-  // Append the result element to the response container
-  responseContainer.appendChild(resultElement);
+  const testChild = document.createElement('div');
+  testChild.innerText = result;
+  responseContainer.appendChild(testChild);
 }
