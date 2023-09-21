@@ -2,7 +2,7 @@ import axios from 'axios';
 import { OpenAI } from 'openai';
 
 document.getElementById('myButton').addEventListener('click', function() {
-  sendMessage();
+  generateWorkout();
 });
 
 const openai = new OpenAI({
@@ -11,7 +11,7 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true
 });
 
-async function getChatCompletion(userInput) {
+async function getChatCompletion(message) {
   const OPENAI_API_KEY = openai.apiKey;
   const config = {
     headers: {
@@ -23,7 +23,7 @@ async function getChatCompletion(userInput) {
   const data = {
     model: 'gpt-3.5-turbo',
     messages: [
-      { role: 'user', content: userInput }
+      { role: 'user', content: message }
     ],
     temperature: 0.7
   };
@@ -37,13 +37,31 @@ async function getChatCompletion(userInput) {
   }
 }
 
-export async function sendMessage() {
+
+function generatePrompt(height, sex, weight, minutes, muscles) {
+  const prompt = `Act as my personal trainer. I am a ${sex}, ${height} inches tall, ${weight} lbs.
+                  I want you to write me workout that is ${minutes} minutes long, focusing on ${muscles}.
+                  I want you to include the name of the exercise, how much time to do it for, and a description of the exercise.
+                  Put all the information in table format`;
+  
+  return prompt;
+}
+
+
+export async function generateWorkout() {
   // Get the user input from the input field
-  const userInput = document.getElementById('userInput').value.toString();
+  const height = document.getElementById('height').value.toString();
+  const sex = document.getElementById('sex').value.toString();
+  const weight = document.getElementById('weight').value.toString();
+  const minutes = document.getElementById('minutes').value.toString();
+  const muscles = document.getElementById('muscles').value.toString();
+
   const responseContainer = document.getElementById('responseContainer');
 
+  const prompt = generatePrompt(height, sex, weight, minutes, muscles);
+
   // Call getChatCompletion with user input
-  const result = await getChatCompletion(userInput);
+  const result = await getChatCompletion(prompt);
 
   // Create a new element to hold the result
   const resultElement = document.createElement('div');
