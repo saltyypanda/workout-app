@@ -28,15 +28,14 @@ async function getChatCompletion() {
     temperature: 0.7
   };
 
-  return "you did it!";
-
-  // try {
-  //   const response = await axios.post('https://api.openai.com/v1/chat/completions', data, config);
-  //   return response.data;
-  // } catch (error) {
-  //   console.error('Error:', error);
-  //   throw error;
-  // }
+  try {
+    const response = await axios.post('https://api.openai.com/v1/chat/completions', data, config);
+    return JSON.stringify(response.data);
+    // return "it worked!!!"
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
 }
 
 export async function sendMessage() {
