@@ -1,10 +1,6 @@
 import axios from 'axios';
 import { OpenAI } from 'openai';
 
-document.getElementById('myButton').addEventListener('click', function() {
-  generateWorkout();
-});
-
 const openai = new OpenAI({
   organization: "org-f2NApAOmy3mObCzhBPi4XHnw",
   apiKey: process.env.OPENAI_API_KEY,
@@ -59,9 +55,17 @@ export async function generateWorkout() {
   const responseContainer = document.getElementById('responseContainer');
 
   // Call getChatCompletion with user input
+  document.getElementById('loader').style.display = 'inline-block';
   const result = await getChatCompletion(prompt);
+  document.getElementById('loader').style.display = 'none';
 
   const testChild = document.createElement('div');
   testChild.innerText = result;
   responseContainer.appendChild(testChild);
 }
+
+
+
+document.getElementById('myButton').addEventListener('click', function() {
+  generateWorkout();
+});
