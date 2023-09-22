@@ -5,10 +5,10 @@
   <link rel="stylesheet" href="styles/styles.css">
 </head>
   <body>
-    <input type="text" id="height" placeholder="Height:">
-    <input type="text" id="sex" placeholder="Sex:">
-    <input type="text" id="weight" placeholder="Weight:">
-    <input type="text" id="minutes" placeholder="Duration (m)">
+    <input type="text" id="height" placeholder="Height:" value="68">
+    <input type="text" id="sex" placeholder="Sex:" value="female">
+    <input type="text" id="weight" placeholder="Weight:" value="168">
+    <input type="text" id="minutes" placeholder="Duration (m)" value="30">
     <label for="muscles">Muscle Group:</label>
     <select id="muscles">
       <option value="legs">Legs</option>
@@ -19,7 +19,7 @@
     </select>
 
     <button id="myButton">Generate Workout!</button>
-    <div id="responseContainer">
+    <div id="workoutTableContainer">
       <span id="loader" class="loader"></span>
     </div>
 
